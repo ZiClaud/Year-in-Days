@@ -36,11 +36,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                // 1. Find the navigation host fragment
+                val navHostFragment = supportFragmentManager
+                    .findFragmentById(R.id.nav_host_fragment_content_main) as androidx.navigation.fragment.NavHostFragment
+
+                // 2. Get the controller
+                val navController = navHostFragment.navController
+
+                // 3. Navigate to your destination
+                navController.navigate(R.id.action_FirstFragment_to_SecondFragment)
+
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

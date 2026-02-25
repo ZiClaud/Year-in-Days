@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/SecondFragment"
         android:name="eu.ziclaud.yearindays.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/settings"
         tools:layout="@layout/fragment_second">
 
         <action
