@@ -3,4 +3,4 @@
     android:layout_width="12dp"
     android:layout_height="12dp"
     android:layout_margin="6dp"
-    android:background="@drawable/white_square_border" />
+    android:background="@drawable/white_square" />

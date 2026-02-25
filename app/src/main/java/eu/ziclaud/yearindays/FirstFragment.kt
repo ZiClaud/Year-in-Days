@@ -1,20 +1,16 @@
 package eu.ziclaud.yearindays
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.GridView
 import androidx.annotation.RequiresApi
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import eu.ziclaud.yearindays.databinding.FragmentFirstBinding
-import java.time.LocalDate
+import eu.ziclaud.yearindays.logic.DateLogic
 import java.time.Year
 
 /**
@@ -47,15 +43,10 @@ class FirstFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setDayField() {
-        // Get current year and day of year
-        val currentDate = LocalDate.now()
-        val currentYear = currentDate.year
-        val currentDayOfYear = currentDate.dayOfYear
-        val isLeapYear = Year.isLeap(currentYear.toLong())
-        val maxDaysInYear = if (isLeapYear) 366 else 365
+        val day = DateLogic.currentDayOfYear
+        val max = DateLogic.maxDaysInYear
 
-        // Set the text to currentDayTextView
-        binding.currentDayTextView.text = "$currentDayOfYear/$maxDaysInYear"
+        binding.currentDayTextView.text = "$day/$max"
     }
 
     inner class SquareAdapter(private val count: Int) :
@@ -69,9 +60,18 @@ class FirstFragment : Fragment() {
             return SquareViewHolder(view)
         }
 
+        @RequiresApi(Build.VERSION_CODES.O)
         override fun onBindViewHolder(holder: SquareViewHolder, position: Int) {
-            // Here you could change the color of squares based on 'position'
-            // e.g., if (position < currentDay) holder.itemView.setBackgroundColor(...)
+            // position 0 is Day 1, so we compare (position + 1) to the current day
+            val dayOfSquare = position + 1
+
+            if (dayOfSquare < DateLogic.currentDayOfYear) {
+                // Days that have ALREADY passed: show border
+                holder.itemView.setBackgroundResource(R.drawable.white_square)
+            } else {
+                // Today and future days: show no border
+                holder.itemView.setBackgroundResource(R.drawable.transparent_square)
+            }
         }
 
         override fun getItemCount(): Int = count
@@ -86,9 +86,8 @@ class FirstFragment : Fragment() {
 
         // Setup RecyclerView with a Grid Manager
         val cols = 14
-        val currentDayOfYear = LocalDate.now().dayOfYear
         binding.recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(requireContext(), cols)
-        binding.recyclerView.adapter = SquareAdapter(currentDayOfYear)
+        binding.recyclerView.adapter = SquareAdapter(DateLogic.maxDaysInYear)
 
         /*
         // Button navigation
