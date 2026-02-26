@@ -4,7 +4,7 @@
 
 <h1>Year in Days</h1>
 
-#### Your calendar, re-imagined one day at a time 
+#### Your calendar, re-imagined one day at a time
 
 [<img src="https://raw.githubusercontent.com/rubenpgrady/get-it-on-github/refs/heads/main/get-it-on-github.png"
 alt="Get it on GitHub"
@@ -16,6 +16,8 @@ height="80">](https://f-droid.org/packages/eu.ziclaud.yearindays)
 -->
 </div>
 
+##### App inspired by "My Life in Weeks" to help you visualize the passage of time. Useful to track objectives, visualize exam dates, or to better plan your New Year's resolutions!
+
 ---
 
 ## App Screenshots:
@@ -25,13 +27,6 @@ WIP
 ---
 
 ## Features
-
-### TODO
-
-- TODO
-- TODO
-
----
 
 ### User Profile & Progress
 
@@ -51,5 +46,3 @@ WIP
 
 - TODO
 - TODO
-
----
