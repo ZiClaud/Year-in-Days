@@ -23,4 +23,8 @@ object DateLogic {
 
     val maxDaysInYear: Int
         get() = if (isLeapYear) 366 else 365
+
+    fun getPosFromDay(date: LocalDate): Int {
+        return date.dayOfYear
+    }
 }
