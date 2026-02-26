@@ -1,23 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 150 150">
-    <path 
-        fill="#FFFFFF" 
-        fill-opacity="0.7" 
+    <path fill="#010208"
+        d="M 10,75 C 10,10 10,10 75,10 C 140,10 140,10 140,75 C 140,140 140,140 75,140 C 10,140 10,140 10,75 Z" />
+
+    <path fill="#FFFFFF" fill-opacity="0.7"
         d="M47,55C47,50.582 50.582,47 55,47H65C69.418,47 73,50.582 73,55V65C73,69.418 69.418,73 65,73H55C50.582,73 47,69.418 47,65Z" />
-    
-    <path 
-        fill="#FFFFFF" 
-        fill-opacity="0.7" 
+
+    <path fill="#FFFFFF" fill-opacity="0.7"
         d="M77,55C77,50.582 80.582,47 85,47H95C99.418,47 103,50.582 103,55V65C103,69.418 99.418,73 95,73H85C80.582,73 77,69.418 77,65Z" />
-    
-    <path 
-        fill="#FFFFFF" 
-        fill-opacity="0.7" 
+
+    <path fill="#FFFFFF" fill-opacity="0.7"
         d="M47,85C47,80.582 50.582,77 55,77H65C69.418,77 73,80.582 73,85V95C73,99.418 69.418,103 65,103H55C50.582,103 47,99.418 47,95Z" />
-    
-    <path 
-        fill="none"
-        stroke="#FFFFFF" 
-        stroke-width="2" 
-        stroke-opacity="0.7" 
+
+    <path fill="none" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.7"
         d="M77,85C77,80.582 80.582,77 85,77H95C99.418,77 103,80.582 103,85V95C103,99.418 99.418,103 95,103H85C80.582,103 77,99.418 77,95Z" />
 </svg>
