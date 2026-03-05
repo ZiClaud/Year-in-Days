@@ -55,9 +55,9 @@ class FirstFragment : Fragment() {
         }
 
         recyclerView = RecyclerView(context).apply {
-            layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, 0, 1f).apply {
-                val margin = (16 * density).toInt()
-                setMargins(0, margin, 0, 0)
+            layoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, 1f).apply {
+                val marginTop = (16 * density).toInt()
+                setMargins(0, marginTop, 0, 0)
             }
         }
 
