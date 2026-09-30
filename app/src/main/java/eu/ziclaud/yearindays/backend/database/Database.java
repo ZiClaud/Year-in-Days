@@ -1,5 +1,7 @@
 package eu.ziclaud.yearindays.backend.database;
 
+import android.os.Build;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,7 +18,8 @@ public class Database implements IDatabase {
                 CREATE TABLE colours (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
-                hex TEXT NOT NULL
+                hex TEXT NOT NULL,
+                hex_border TEXT NOT NULL DEFAULT '#BCBCBCFF'
                 );
                 
                 CREATE TABLE days (
@@ -28,8 +31,8 @@ public class Database implements IDatabase {
                 FOREIGN KEY (colour_id) REFERENCES colours(id)
                 );
                 
-                INSERT INTO colours VALUES ('Default', '#BCBCBCFF');
-                INSERT INTO colours VALUES ('Empty', '#00000000');
+                INSERT INTO colours (name, hex) VALUES ('Default', '#BCBCBCFF');
+                INSERT INTO colours (name, hex) VALUES ('Empty', '#00000000');
                 """;
 
         // generated
