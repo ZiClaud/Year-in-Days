@@ -17,8 +17,11 @@ height="80">](https://f-droid.org/packages/eu.ziclaud.yearindays)
 </div>
 
 <div align="center">
-![LABEL_AI MODIFIED_black.svg](AI-EU-Labels/LABEL_AI%20MODIFIED_black.svg)
-Mostly made by humans, but AI was used in some part of the code.
+
+  Mostly made by humans, but AI was used in some part of the code.
+
+  <img alt="LABEL AI MODIFIED" width="150" src="AI-EU-Labels/LABEL_AI_MODIFIED_black.svg?raw=true">
+
 </div>
 
 ##### App inspired by "My Life in Weeks" to help you visualize the passage of time. Useful to track objectives, visualize exam dates, or to better plan your New Year's resolutions!
