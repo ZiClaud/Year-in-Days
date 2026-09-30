@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="eu.ziclaud.yearindays.FirstFragment"
+        android:name="eu.ziclaud.yearindays.frontend.FirstFragment"
         android:label="@string/year_in_days">
 
         <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="eu.ziclaud.yearindays.SecondFragment"
+        android:name="eu.ziclaud.yearindays.frontend.SecondFragment"
         android:label="@string/settings">
 
         <action

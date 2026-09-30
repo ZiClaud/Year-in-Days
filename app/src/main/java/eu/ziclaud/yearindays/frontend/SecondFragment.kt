@@ -1,4 +1,4 @@
-package eu.ziclaud.yearindays
+package eu.ziclaud.yearindays.frontend
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -12,7 +12,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import eu.ziclaud.yearindays.drawable.createSquareDrawable
+import eu.ziclaud.yearindays.frontend.drawable.createSquareDrawable
 
 class SecondFragment : Fragment() {
 

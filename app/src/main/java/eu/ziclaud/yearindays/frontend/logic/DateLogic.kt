@@ -1,4 +1,4 @@
-package eu.ziclaud.yearindays.logic
+package eu.ziclaud.yearindays.frontend.logic
 
 import android.os.Build
 import androidx.annotation.RequiresApi

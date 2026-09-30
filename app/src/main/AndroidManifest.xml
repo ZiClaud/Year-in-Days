@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YearInDays">
         <activity
-            android:name=".MainActivity"
+            android:name=".frontend.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.YearInDays">
             <intent-filter>

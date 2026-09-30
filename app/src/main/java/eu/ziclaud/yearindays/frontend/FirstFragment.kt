@@ -1,4 +1,4 @@
-package eu.ziclaud.yearindays
+package eu.ziclaud.yearindays.frontend
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -15,10 +15,10 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import eu.ziclaud.yearindays.drawable.createSquareDrawable
-import eu.ziclaud.yearindays.drawable.createTransparentSquareDrawable
-import eu.ziclaud.yearindays.drawable.createWhiteSquareDrawable
-import eu.ziclaud.yearindays.logic.DateLogic
+import eu.ziclaud.yearindays.frontend.drawable.createSquareDrawable
+import eu.ziclaud.yearindays.frontend.drawable.createTransparentSquareDrawable
+import eu.ziclaud.yearindays.frontend.drawable.createWhiteSquareDrawable
+import eu.ziclaud.yearindays.frontend.logic.DateLogic
 import java.time.LocalDate
 
 class FirstFragment : Fragment() {
@@ -28,8 +28,7 @@ class FirstFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val context = requireContext()
         val density = context.resources.displayMetrics.density
@@ -114,18 +113,20 @@ class FirstFragment : Fragment() {
         @RequiresApi(Build.VERSION_CODES.O)
         override fun onBindViewHolder(holder: SquareViewHolder, position: Int) {
             val dayOfSquare = position + 1
-            val specialDays = intArrayOf(DateLogic.getPosFromDay(LocalDate.of(2001, 11, 24)))
-            val specialDaysExam = intArrayOf(
-                DateLogic.getPosFromDay(LocalDate.of(2026, 4, 7)),
-                DateLogic.getPosFromDay(LocalDate.of(2026, 6, 30))
-            )
-            val specialDaysRed = intArrayOf(DateLogic.getPosFromDay(LocalDate.of(2026, 7, 15)))
 
             val baseDrawable = if (dayOfSquare < DateLogic.currentDayOfYear) {
                 createWhiteSquareDrawable()
             } else {
                 createTransparentSquareDrawable()
             }
+
+
+            val specialDays = intArrayOf(DateLogic.getPosFromDay(LocalDate.of(2001, 11, 24)))
+            val specialDaysExam = intArrayOf(
+                DateLogic.getPosFromDay(LocalDate.of(2026, 4, 7)),
+                DateLogic.getPosFromDay(LocalDate.of(2026, 6, 30))
+            )
+            val specialDaysRed = intArrayOf(DateLogic.getPosFromDay(LocalDate.of(2026, 7, 15)))
 
             val finalDrawable = if (specialDays.contains(dayOfSquare)) {
                 createSquareDrawable(DEFAULT_YELLOW_SQUARE_COLOR, DEFAULT_SQUARE_STROKE_COLOR)

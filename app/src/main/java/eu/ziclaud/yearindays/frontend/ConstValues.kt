@@ -1,4 +1,4 @@
-package eu.ziclaud.yearindays
+package eu.ziclaud.yearindays.frontend
 
 const val BG_LOGO_COLOR: Int = 0xFF010208.toInt()
 const val FG_LOGO_COLOR: Int = 0xFFFFFFFF.toInt()

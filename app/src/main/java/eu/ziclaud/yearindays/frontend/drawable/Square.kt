@@ -1,10 +1,10 @@
-package eu.ziclaud.yearindays.drawable
+package eu.ziclaud.yearindays.frontend.drawable
 
 import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
-import eu.ziclaud.yearindays.DEFAULT_SQUARE_COLOR
-import eu.ziclaud.yearindays.DEFAULT_SQUARE_STROKE_COLOR
-import eu.ziclaud.yearindays.DEFAULT_TRANSPARENT_SQUARE_COLOR
+import eu.ziclaud.yearindays.frontend.DEFAULT_SQUARE_COLOR
+import eu.ziclaud.yearindays.frontend.DEFAULT_SQUARE_STROKE_COLOR
+import eu.ziclaud.yearindays.frontend.DEFAULT_TRANSPARENT_SQUARE_COLOR
 
 const val RADIUS = 4f
 const val STROKE = 1f
