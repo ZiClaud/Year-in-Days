@@ -1,9 +1,19 @@
 package eu.ziclaud.yearindays.backend.database;
 
+import java.time.LocalDate;
+import java.util.Set;
+
+import eu.ziclaud.yearindays.backend.Colour;
+import eu.ziclaud.yearindays.stuff.DayYID;
+
 public interface IDatabase {
-    String createDB();
-    String insertDays();
+    String createYIDDB();
+    Set<DayYID> getDayYID();
+    Set<Colour> getColourYID();
+
+    String insertDays(LocalDate day, int colourId, String description);
     String insertColours();
-    String resetDB();
-    String _deleteDB();
+    String resetYIDDB();
+    String _deleteYIDDB();
+    String createSettingsDB();
 }
