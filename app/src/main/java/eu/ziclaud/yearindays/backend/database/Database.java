@@ -1,5 +1,9 @@
 package eu.ziclaud.yearindays.backend.database;
 
+import static eu.ziclaud.yearindays.frontend.ConstValuesKt.DEFAULT_SQUARE_COLOR;
+import static eu.ziclaud.yearindays.frontend.ConstValuesKt.DEFAULT_SQUARE_STROKE_COLOR;
+import static eu.ziclaud.yearindays.frontend.ConstValuesKt.DEFAULT_TRANSPARENT_SQUARE_COLOR;
+
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -16,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import eu.ziclaud.yearindays.backend.Colour;
+import eu.ziclaud.yearindays.stuff.ColourYID;
 import eu.ziclaud.yearindays.stuff.DayYID;
 
 public class Database implements IDatabase {
@@ -25,8 +30,7 @@ public class Database implements IDatabase {
         String query = resetYIDDB();
 
         // AI generated
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:yearindays.db");
-             Statement stmt = conn.createStatement()) {
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:yearindays.db"); Statement stmt = conn.createStatement()) {
 
             // Split and execute each statement separately
             String[] statements = query.split(";");
@@ -58,9 +62,7 @@ public class Database implements IDatabase {
 
         Set<DayYID> days = new HashSet<>();
 
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:yearindays.db");
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:yearindays.db"); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
                 LocalDate day = null;
@@ -89,8 +91,7 @@ public class Database implements IDatabase {
                 VALUES (?, ?, ?)
                 """;
 
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:yearindays.db");
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:yearindays.db"); PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, day.toString());
             pstmt.setInt(2, colourId);
@@ -112,25 +113,23 @@ public class Database implements IDatabase {
     }
 
     @Override
-    public Set<Colour> getColourYID() {
+    public Set<ColourYID> getColoursYID() {
         String query = """
                 SELECT id, name, hex, hex_border
                 FROM colours
                 """;
 
-        Set<Colour> colours = new HashSet<>();
+        Set<ColourYID> colours = new HashSet<>();
 
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:yearindays.db");
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:yearindays.db"); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                String id = rs.getString("id");
+                int id = rs.getInt("id");
                 String hexColour = rs.getString("hex");
                 String hexColourBorder = rs.getString("hex_border");
-                String description = rs.getString("description");
+                String name = rs.getString("name");
 
-                colours.add(new DayYID(id, hexColour, hexColourBorder, description));
+                colours.add(new ColourYID(id, hexColour, hexColourBorder, name));
             }
 
         } catch (SQLException e) {
@@ -138,7 +137,7 @@ public class Database implements IDatabase {
             e.printStackTrace();
         }
 
-        return days;
+        return colours;
     }
 
     @Override
@@ -154,21 +153,18 @@ public class Database implements IDatabase {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
                 hex TEXT NOT NULL,
-                hex_border TEXT NOT NULL DEFAULT '#BCBCBCFF'
+                hex_border TEXT NOT NULL DEFAULT '""" + String.format("0x%08X", DEFAULT_SQUARE_STROKE_COLOR) + """
+                '
                 );
-                
-                CREATE TABLE days (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                day DATE NOT NULL UNIQUE,
-                colour_id INTEGER NOT NULL,
-                repeats BOOL DEFAULT 0,
-                description TEXT,
-                FOREIGN KEY (colour_id) REFERENCES colours(id)
-                );
-                
-                INSERT INTO colours (name, hex) VALUES ('Default', '#BCBCBCFF');
-                INSERT INTO colours (name, hex) VALUES ('Empty', '#00000000');
-                """;
+                        CREATE TABLE days (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        day DATE NOT NULL UNIQUE,
+                        colour_id INTEGER NOT NULL,
+                        repeats BOOL DEFAULT 0,
+                        description TEXT,
+                        FOREIGN KEY (colour_id) REFERENCES colours(id)
+                        );
+                """ + "INSERT INTO colours (name, hex) VALUES ('Default', '" + String.format("0x%08X", DEFAULT_SQUARE_COLOR) + "');" + "INSERT INTO colours (name, hex) VALUES ('Empty', '" + String.format("0x%08X", DEFAULT_TRANSPARENT_SQUARE_COLOR) + "');";
     }
 
     @Override

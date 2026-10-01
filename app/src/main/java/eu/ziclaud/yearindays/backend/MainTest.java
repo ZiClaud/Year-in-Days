@@ -9,6 +9,7 @@ import java.util.Set;
 
 import eu.ziclaud.yearindays.backend.database.Database;
 import eu.ziclaud.yearindays.backend.database.IDatabase;
+import eu.ziclaud.yearindays.stuff.ColourYID;
 import eu.ziclaud.yearindays.stuff.DayYID;
 
 public class MainTest {
@@ -22,5 +23,8 @@ public class MainTest {
 
         Set<DayYID> days = db.getDayYID();
         System.out.println(days);
+
+        Set<ColourYID> colour = db.getColoursYID();
+        System.out.println(colour);
     }
 }
