@@ -15,11 +15,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import eu.ziclaud.yearindays.backend.Colour;
 import eu.ziclaud.yearindays.stuff.ColourYID;
 import eu.ziclaud.yearindays.stuff.DayYID;
 

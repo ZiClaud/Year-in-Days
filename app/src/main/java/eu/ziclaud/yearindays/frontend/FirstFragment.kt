@@ -15,10 +15,12 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import eu.ziclaud.yearindays.backend.database.Database2
 import eu.ziclaud.yearindays.frontend.drawable.createSquareDrawable
 import eu.ziclaud.yearindays.frontend.drawable.createTransparentSquareDrawable
 import eu.ziclaud.yearindays.frontend.drawable.createWhiteSquareDrawable
 import eu.ziclaud.yearindays.frontend.logic.DateLogic
+import eu.ziclaud.yearindays.stuff.DayYID
 import java.time.LocalDate
 
 class FirstFragment : Fragment() {
@@ -120,20 +122,18 @@ class FirstFragment : Fragment() {
                 createTransparentSquareDrawable()
             }
 
+            val db: Database2 = Database2(requireContext())
+            val days: Set<DayYID> = db.getDayYID()
+            val localDays = mutableListOf<Int>();
 
-            val specialDays = intArrayOf(DateLogic.getPosFromDay(LocalDate.of(2001, 11, 24)))
-            val specialDaysExam = intArrayOf(
-                DateLogic.getPosFromDay(LocalDate.of(2026, 4, 7)),
-                DateLogic.getPosFromDay(LocalDate.of(2026, 6, 30))
-            )
-            val specialDaysRed = intArrayOf(DateLogic.getPosFromDay(LocalDate.of(2026, 7, 15)))
+            for (day in days) {
+                var localDay: LocalDate = day.day;
+                localDays.add(DateLogic.getPosFromDay(localDay));
+                print(localDays);
+            }
 
-            val finalDrawable = if (specialDays.contains(dayOfSquare)) {
+            val finalDrawable = if (localDays.contains(dayOfSquare)) {
                 createSquareDrawable(DEFAULT_YELLOW_SQUARE_COLOR, DEFAULT_SQUARE_STROKE_COLOR)
-            } else if (specialDaysExam.contains(dayOfSquare)) {
-                createSquareDrawable(DEFAULT_GREEN_SQUARE_COLOR, DEFAULT_SQUARE_STROKE_COLOR)
-            } else if (specialDaysRed.contains(dayOfSquare)) {
-                createSquareDrawable(DEFAULT_RED_SQUARE_COLOR, DEFAULT_SQUARE_STROKE_COLOR)
             } else {
                 baseDrawable
             }

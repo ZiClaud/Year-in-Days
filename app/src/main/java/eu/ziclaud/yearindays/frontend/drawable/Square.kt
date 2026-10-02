@@ -18,13 +18,13 @@ fun createTransparentSquareDrawable(): GradientDrawable {
 }
 
 fun createSquareDrawable(
-    fillColor: Int,
-    strokeColor: Int = DEFAULT_SQUARE_STROKE_COLOR
+    fillColor: Long,
+    strokeColor: Long = DEFAULT_SQUARE_STROKE_COLOR
 ): GradientDrawable {
     return GradientDrawable().apply {
         shape = GradientDrawable.RECTANGLE
         cornerRadius = RADIUS * Resources.getSystem().displayMetrics.density // 4dp to px
-        setColor(fillColor)
-        setStroke((STROKE * Resources.getSystem().displayMetrics.density).toInt(), strokeColor)
+        setColor(fillColor.toInt())
+        setStroke((STROKE * Resources.getSystem().displayMetrics.density).toInt(), strokeColor.toInt())
     }
 }
